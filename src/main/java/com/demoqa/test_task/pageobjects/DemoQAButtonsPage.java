@@ -1,5 +1,6 @@
 package com.demoqa.test_task.pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,11 +21,6 @@ public class DemoQAButtonsPage {
     private final By rightClickMessage = By.id("rightClickMessage");
     private final By doubleClickMessage = By.id("doubleClickMessage");
 
-    private final By alertsFramesWindowsButton = By.xpath(".//div[text()='Alerts, Frame & Windows']");
-
-    private final By browserWindowsButton = By.xpath(".//span[text()='Browser Windows']/ancestor::li[@class='btn btn-light ' and @id='item-0']");
-    //(".//span[text()='Browser Windows']/ancestor::li");
-    //(".//div[@class='element-list collapse show']/ul/li[1]");
     public DemoQAButtonsPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -34,15 +30,16 @@ public class DemoQAButtonsPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(mainHeader));
     }
 
+    @Step("8.\tНажать на кнопку «Click me»")
     public void performClickOnClickMeButton(){
         driver.findElement(clickMeButton).click();
     }
-
+    @Step("12.\tНажать на кнопку «Double Click me»")
     public void performClickOnDoubleClickMeButton(){
         Actions action = new Actions(driver);
         action.doubleClick(driver.findElement(doubleClickButton)).perform();
     }
-
+    @Step("10.\tНажать на кнопку «Right Click me»")
     public void performClickOnRightClickButton(){
         Actions action = new Actions(driver);
         action.contextClick(driver.findElement(rightClickButton)).perform();
@@ -53,15 +50,4 @@ public class DemoQAButtonsPage {
     public String getRightClickResultMessage(){return driver.findElement(rightClickMessage).getText();}
 
     public String getDoubleClickResultMessage(){return driver.findElement(doubleClickMessage).getText();}
-
-    public void performClickOnAlertsFrameWindowsButton(){
-        WebElement element = driver.findElement(alertsFramesWindowsButton);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-        element.click();
-    }
-
-    public void performClickOnBrowserWindowsTab(){
-        new WebDriverWait(driver,10)
-                .until(ExpectedConditions.visibilityOfElementLocated(browserWindowsButton));
-        driver.findElement(browserWindowsButton).click(); }
 }

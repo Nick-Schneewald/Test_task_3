@@ -1,5 +1,6 @@
 package com.demoqa.test_task.pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +20,7 @@ public class DemoQAMainPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(toolsQALogo));
     }
 
+    @Step("2.\tНажать на «Elements»")
     public void performClickOnElements(){
         driver.findElement(elementsButton).click();
     }

@@ -1,5 +1,6 @@
 package com.demoqa.test_task.pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,7 +24,7 @@ public class DemoQATextBoxPage {
 
     private final By savedCurrentAddress = By.xpath(".//p[@id='currentAddress' and @class='mb-1']");
     private final By savedPermanentAddress = By.xpath(".//p[@id='permanentAddress' and @class='mb-1']");
-    private final By buttonsButton = By.xpath(".//div[@class='element-list collapse show']/ul/li[5]");
+
     public DemoQATextBoxPage(WebDriver driver){
         this.driver = driver;
     }
@@ -33,6 +34,7 @@ public class DemoQATextBoxPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(mainHeader));
     }
 
+    @Step("4.\tЗаполнить поля: Full Name, Email, Current Address, Permanent Address")
     public void fillInTextBoxData(String fullName, String email, String currentAddress, String permanentAddress){
         driver.findElement(fullNameInput).clear();
         driver.findElement(fullNameInput).sendKeys(fullName);
@@ -43,12 +45,10 @@ public class DemoQATextBoxPage {
         driver.findElement(permanentAddressTextArea).clear();
         driver.findElement(permanentAddressTextArea).sendKeys(permanentAddress);
     }
-
+    @Step("5.\tНажать на кнопку «Submit»")
     public void performClickOnSubmitButton(){
         driver.findElement(submitButton).click();
     }
-
-    public void performClickOnButtonsButton(){ driver.findElement(buttonsButton).click();}
 
     public String getFullNameValue() {return driver.findElement(savedFullName).getText();}
     public String getEmailValue() {return driver.findElement(savedEmail).getText();}

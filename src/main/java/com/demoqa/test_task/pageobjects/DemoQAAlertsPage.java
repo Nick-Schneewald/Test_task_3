@@ -1,5 +1,6 @@
 package com.demoqa.test_task.pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,39 +31,40 @@ public class DemoQAAlertsPage {
         new WebDriverWait(driver,8)
                 .until(ExpectedConditions.visibilityOfElementLocated(mainHeader));
     }
-
+    @Step("21.\tНажать на кнопку «Click me»  рядом с Click Button to see alert")
     public void performClickOnAlertButton(){
         driver.findElement(alertButton).click();
     }
-
+    @Step("23.\tНажать на кнопку «Click me»  рядом с On button click, alert will appear after 5 seconds")
     public void performClickOnTimerAlertButton(){
         driver.findElement(timerAlertButton).click();
     }
-
+    @Step("22.\tЗакрыть уведомление")
     public void closeAlert(){
         alert = driver.switchTo().alert();
         alert.accept();
     }
-
+    @Step("24.\tЗакрыть уведомление")
     public void closeTimerAlert(){
         new WebDriverWait(driver,10)
                 .until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
         alert.accept();
     }
-
+    @Step("25.\tНажать на кнопку «Click me»  рядом с On button click, confirm box will appear")
     public void performClickOnConfirmAlertButton(){
         driver.findElement(confirmAlertButton).click();
     }
+    @Step("28.\tНажать на кнопку «Click me»  рядом с On button click, prompt box will appear")
     public void performClickOnPromptAlertButton(){
         driver.findElement(promptAlertButton).click();
     }
-
+    @Step("26.\tНажать на кнопку «Да» в уведомление")
     public void closeConfirmAlert(){
         alert = driver.switchTo().alert();
         alert.accept();
     }
-
+    @Step("29.\tЗаполнить поле в уведомление данными: Test name")
     public void closePromptAlert(){
         alert = driver.switchTo().alert();
         alert.sendKeys("Test name");

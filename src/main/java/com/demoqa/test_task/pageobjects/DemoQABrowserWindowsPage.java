@@ -1,5 +1,6 @@
 package com.demoqa.test_task.pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ public class DemoQABrowserWindowsPage {
     private final By newTabHeading = By.xpath(".//h1[@id='sampleHeading']");
     private final By newWindowHeading = By.xpath(".//h1[@id='sampleHeading']");
 
-    private final By alertsButton = By.xpath(".//div[@class='element-list collapse show']/ul/li[2]");
+
 
     public DemoQABrowserWindowsPage(WebDriver driver) {
         this.driver = driver;
@@ -27,31 +28,22 @@ public class DemoQABrowserWindowsPage {
         /*new WebDriverWait(driver,8)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body")));*/
     }
-
+    @Step("16.\tНажать на кнопку «New Tab»")
     public void performClickOnNewTabButton(){
         driver.findElement(newTabButton).click();
     }
-
+    @Step("17.\tЗакрыть новую вкладку")
     public void closeNewTab(){
         driver.switchTo().defaultContent();
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "w");
     }
-
-    /*
-    public void waitForLoadingNewTabContent(){
-        driver.switchTo().defaultContent();
-        new WebDriverWait(driver,8)
-                .until(ExpectedConditions.visibilityOfElementLocated(newTabHeading));
-    }
-    */
+    @Step("18.\tНажать на кнопку «New window»")
     public void performClickOnNewWindowButton() { driver.findElement(newWindowButton).click(); }
-
+    @Step("19.\tЗакрыть новое окно")
     public void closeNewWindow(){
         driver.switchTo().defaultContent();
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "w");
     }
 
-    public void performClickOnAlertsButton(){
-        driver.findElement(alertsButton).click();
-    }
+
 }
